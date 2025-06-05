@@ -29,3 +29,10 @@ body {
 .custom-gradient {
   background: linear-gradient(to right, #dceaff 55%, #1b70ee 140%);
 }
+
+.dark-gradient-text {
+  background: linear-gradient(to left, #125eeb 10%, #000000 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
