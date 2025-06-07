@@ -157,7 +157,7 @@ const ContactSection: React.FC = () => {
           <div className="text-white text-left">
             <div className="mb-6">
               <h2 className="text-2xl mb-2">
-                Let's Empower <em className="font-light">Growth</em>
+                Let&apos;s Empower <em className="font-light">Growth</em>
               </h2>
               <h3 className="text-3xl font-bold">COSync</h3>
             </div>

@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import "./page.css";
 import PricingSection from "../components/PricingSection";
 import CustomSolutionSection from "../components/CustomSolutions";
 import Header from "../components/Header";
+import { useRouter } from "next/navigation";
 
 // Features data JSON
 const featuresData = [
@@ -16,6 +17,7 @@ const featuresData = [
     buttonText: "Learn More >>",
     imageUrl: "/SpaceBookingAndMangement.png",
     altText: "Space booking interface with calendar and user",
+    contentId: "2", // Maps to space booking content
   },
   {
     id: 2,
@@ -25,6 +27,7 @@ const featuresData = [
     buttonText: "Learn More >>",
     imageUrl: "/Community.png",
     altText: "Community engagement mobile interface",
+    contentId: "3", // Maps to community content
   },
   {
     id: 3,
@@ -34,6 +37,7 @@ const featuresData = [
     buttonText: "Learn More >>",
     imageUrl: "/TenantManagement.png",
     altText: "Payment processing dashboard",
+    contentId: "5", // Maps to all-in-one management content
   },
   {
     id: 4,
@@ -43,32 +47,43 @@ const featuresData = [
     buttonText: "Learn More >>",
     imageUrl: "/FinancialTools.png",
     altText: "Member portal dashboard interface",
+    contentId: "1", // Maps to payment/financial content
   },
   {
     id: 5,
-    title: "Maintainance and Support",
+    title: "Maintenance and Support",
     description:
       "Streamline maintenance requests with automated ticketing, vendor management, and status tracking. Resolve issues faster and keep tenants informed every step of the way.",
     buttonText: "Learn More >>",
     imageUrl: "/MaintainenceSupport.png",
     altText: "Analytics dashboard with charts and graphs",
+    contentId: "5", // Maps to all-in-one management content
   },
 ];
 
 const LandingPage: React.FC = () => {
-  // Create refs for the sections we want to scroll to
+  const router = useRouter();
+
+  // Create refs for the sections we want to scroll to - using HTMLDivElement
   const solutionsRef = useRef<HTMLDivElement>(null);
   const pricingRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
-  // Scroll functions
-  const scrollToSection = (elementRef: React.RefObject<HTMLElement>): void => {
-    if (elementRef.current) {
+  // Updated scroll function to handle HTMLDivElement refs
+  const scrollToSection = (
+    elementRef: React.RefObject<HTMLDivElement | null>
+  ): void => {
+    if (elementRef?.current) {
       elementRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
+  };
+
+  // Navigation function for Learn More buttons
+  const handleLearnMoreClick = (contentId: string): void => {
+    router.push(`/LearnMore?contentId=${contentId}`);
   };
 
   return (
@@ -119,10 +134,10 @@ const LandingPage: React.FC = () => {
       <div className="custom-gradient w-full h-190">
         <div className="flex flex-col items-center justify-between">
           <h2 className="text-[#121212] text-4xl md:text-5xl font-bold leading-tight ml-3">
-            We're in the buisness of
+            We&apos;re in the business of
           </h2>
           <h2 className="text-[#125EBB] text-4xl md:text-5xl font-bold leading-tight m-3">
-            growing buisness
+            growing business
           </h2>
         </div>
         <div className="relative flex flex-col md:flex-row items-center justify-between">
@@ -203,7 +218,10 @@ const LandingPage: React.FC = () => {
                   <p className="text-lg text-[#4a5568] leading-relaxed">
                     {feature.description}
                   </p>
-                  <button className="bg-[#1a365d] hover:bg-[#2d3748] text-white px-6 py-3 rounded-full font-medium transition-colors duration-200">
+                  <button
+                    onClick={() => handleLearnMoreClick(feature.contentId)}
+                    className="bg-[#1a365d] hover:bg-[#2d3748] text-white px-6 py-3 rounded-full font-medium transition-colors duration-200"
+                  >
                     {feature.buttonText}
                   </button>
                 </div>

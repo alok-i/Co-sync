@@ -9,8 +9,7 @@ const AboutUs = () => {
     <>
       <section className="bg-blue-50 custom-gradient">
         <Header />
-
-        <div className="pb-16">
+        <div>
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-6xl font-bold mb-8">
@@ -20,8 +19,8 @@ const AboutUs = () => {
 
           {/* Illustrations - Top half with gradient background */}
           <div className="flex flex-row justify-between items-end">
-            {/* Left illustration with standing desks - Decreased size */}
-            <div className="bg-white rounded-3xl p-6 shadow-md w-full md:w-4/12 mb-6 md:mb-0">
+            {/* Left illustration with standing desks */}
+            <div className="bg-white rounded-t-3xl p-6 w-full md:w-4/12 mb-6 md:mb-0">
               <Image
                 src="/imageLeftAbout.png"
                 alt="People working at standing desks"
@@ -31,8 +30,8 @@ const AboutUs = () => {
               />
             </div>
 
-            {/* Middle small illustration - Aligned to bottom */}
-            <div className="hidden md:block">
+            {/* Middle illustration - Top border rounded only */}
+            <div className="hidden md:block bg-white rounded-t-3xl p-4">
               <Image
                 src="/imageCenter.png"
                 alt="People working at standing desks"
@@ -42,8 +41,8 @@ const AboutUs = () => {
               />
             </div>
 
-            {/* Right illustration with multiple desks - Made largest */}
-            <div className="bg-white rounded-3xl p-8 shadow-md w-full md:w-6/12">
+            {/* Right illustration with multiple desks */}
+            <div className="bg-white rounded-t-3xl p-8 w-full md:w-6/12">
               <Image
                 src="/imageRightAbout.png"
                 alt="Multiple people in coworking space"
@@ -104,7 +103,7 @@ const AboutUs = () => {
             </h3>
 
             <p className="text-xl text-black mb-8">
-              We're{" "}
+              We&apos;re{" "}
               <span className="font-bold text-blue-600">Alok and Rashmita</span>
               , VIT alumni who jumped straight into the startup world after
               college. We worked across multiple early-stage companies and found
@@ -112,14 +111,14 @@ const AboutUs = () => {
             </p>
 
             <p className="text-xl text-black mb-8">
-              We've spent years working with startups—sometimes as consultants,
-              sometimes as full-time employees, sometimes as freelancers. And if
-              there's one thing we know, it's that co-working spaces play a huge
-              role in shaping a startup's vibe. That's when we noticed the
-              problem. Some spaces had great energy but lacked structure. Others
-              had all the right tools but felt impersonal. And almost
-              everywhere, there were inefficiencies that made things harder than
-              they needed to be.
+              We&apos;ve spent years working with startups—sometimes as
+              consultants, sometimes as full-time employees, sometimes as
+              freelancers. And if there&apos;s one thing we know, it&apos;s that
+              co-working spaces play a huge role in shaping a startup&apos;s
+              vibe. That&apos;s when we noticed the problem. Some spaces had
+              great energy but lacked structure. Others had all the right tools
+              but felt impersonal. And almost everywhere, there were
+              inefficiencies that made things harder than they needed to be.
             </p>
 
             <p className="text-xl text-black mb-12">

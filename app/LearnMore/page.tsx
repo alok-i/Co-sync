@@ -1,69 +1,37 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import FeatureCard from "../components/FeatureCard";
 import ContactSection from "../components/GetInTouchSection";
+import {
+  heroContentVariations,
+  featureVariations,
+  HeroContent,
+  Feature,
+} from "../constants/heroContent";
 
-// Hero section content
-const heroContent = {
-  badge: "Specifically Designed for Coworking Spaces",
-  title: {
-    main: "Automate",
-    highlight: "payments, track dues,",
-    continuation: "and remove the headaches from billing.",
-  },
-  infoBox: {
-    text: "Collecting rent or booking fees can often lead to missed payments, delayed reminders, and manual follow-ups. Our platform helps you stay on top of your finances — without needing to micromanage them.",
-    ctaText: "Book A Demo",
-    ctaIcon: "→",
-  },
-};
+// Loading component for the suspense boundary
+const LoadingFallback: React.FC = () => (
+  <div className="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen flex items-center justify-center">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+      <p className="text-gray-600">Loading...</p>
+    </div>
+  </div>
+);
 
-// interface FeatureCardProps {
-//   title: string;
-//   description: string;
-// }
+// Separate component that uses useSearchParams
+const FeaturesContent: React.FC = () => {
+  const searchParams = useSearchParams();
+  const contentId = searchParams.get("contentId") || "1";
 
-// const FeatureCard: React.FC<FeatureCardProps> = ({ title, description }) => {
-//   return (
-//     <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200">
-//       <h3 className="text-lg font-semibold text-gray-900 mb-3">{title}</h3>
-//       <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
-//     </div>
-//   );
-// };
+  // Get the hero content based on the URL parameter, fallback to "1" if not found
+  const heroContent: HeroContent =
+    heroContentVariations[contentId] || heroContentVariations["1"];
 
-const FeaturesSection: React.FC = () => {
-  const features = [
-    {
-      title: "Choose how bookings happen:",
-      description:
-        "Let members book directly, or keep it admin-only. You can also mix both, depending on the room or resource.",
-    },
-    {
-      title: "Block off unavailable days:",
-      description:
-        "Easily block bookings on holidays, renovation days, or any time your space isn't open.",
-    },
-    {
-      title: "Sync with Google Calendar:",
-      description:
-        "All bookings can connect with Google Calendar to keep everyone in sync, without double entries.",
-    },
-    {
-      title: "Let members book on their own:",
-      description:
-        "Through the Members' Portal, people can easily book desks or rooms anytime—no need to ask the admin.",
-    },
-    {
-      title: "Hot desk bookings made simple:",
-      description:
-        "Members can see which desks are available in real-time and grab any open spot that fits their schedule.",
-    },
-    {
-      title: "Cash Flow Prediction Agent",
-      description: "Predict cash flow trends to optimize decisions.",
-    },
-  ];
+  // Get the features based on the URL parameter, fallback to "1" if not found
+  const features: Feature[] =
+    featureVariations[contentId] || featureVariations["1"];
 
   return (
     <>
@@ -113,14 +81,14 @@ const FeaturesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Existing Features Section */}
+        {/* Features Section */}
         <div className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             {/* Header Section */}
             <div className="flex flex-col lg:flex-row items-start justify-between mb-12">
               <div className="lg:w-1/2 mb-8 lg:mb-0">
                 <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
-                  Here's what you can do:
+                  Here&apos;s what you can do:
                 </h2>
                 {/* Horizontal line - 3px thick */}
                 <div className="h-[1px] bg-blue-500 w-full mt-4"></div>
@@ -135,9 +103,9 @@ const FeaturesSection: React.FC = () => {
                   </div>
                   <p className="text-gray-600 text-lg leading-relaxed">
                     Think of it like giving your space a smart assistant: It
-                    keeps track of who's using what, when it's available, and
-                    how it's being used—so everything just works, and your team
-                    can focus on what really matters.
+                    keeps track of who&apos;s using what, when it&apos;s
+                    available, and how it&apos;s being used—so everything just
+                    works, and your team can focus on what really matters.
                   </p>
                 </div>
               </div>
@@ -172,8 +140,17 @@ const FeaturesSection: React.FC = () => {
           </div>
         </div>
       </div>
-      <ContactSection></ContactSection>
+      <ContactSection />
     </>
+  );
+};
+
+// Main component wrapped in Suspense
+const FeaturesSection: React.FC = () => {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <FeaturesContent />
+    </Suspense>
   );
 };
 

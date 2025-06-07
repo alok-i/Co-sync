@@ -98,7 +98,7 @@ const PricingSection: React.FC = () => {
           Choose the plan
         </h1>
         <h2 className="text-3xl md:text-5xl font-bold dark-gradient-text bg-clip-text text-transparent mb-6">
-          that's right for you
+          that&apos;s right for you
         </h2>
         <p className="text-gray-600 text-lg mb-8">
           No matter your business goals, we have the perfect plan for you

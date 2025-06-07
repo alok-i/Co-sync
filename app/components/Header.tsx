@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { redirect } from "next/navigation";
 
 interface HeaderProps {
   onSolutionsClick?: () => void;
@@ -42,6 +43,10 @@ const Header: React.FC<HeaderProps> = ({
     setIsMenuOpen(false);
   };
 
+  const handleLogoClick = () => {
+    redirect("/home");
+  };
+
   return (
     <header className="w-full z-50 top-0">
       <div className="container py-4">
@@ -56,6 +61,7 @@ const Header: React.FC<HeaderProps> = ({
                 e.currentTarget.src =
                   "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9";
               }}
+              onClick={handleLogoClick()}
             />
           </div>
 
