@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
   onSolutionsClick?: () => void;
@@ -15,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({
   onContactClick,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const router = useRouter();
 
   const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen);
@@ -44,24 +45,24 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const handleLogoClick = () => {
-    redirect("/home");
+    router.push("/home");
   };
 
   return (
     <header className="w-full z-50 top-0">
       <div className="container py-4">
         <div className="flex items-center justify-between">
-          {/* Logo - Now on the extreme left */}
+          {/* Logo - Fix the onClick */}
           <div className="flex items-center h-[60px] w-[160px] mt-2.5">
             <img
               src="/CompanyLogo.png"
               alt="Company Logo"
-              className="object-contain"
+              className="object-contain cursor-pointer"
               onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                 e.currentTarget.src =
                   "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9";
               }}
-              onClick={handleLogoClick()}
+              onClick={handleLogoClick}
             />
           </div>
 
