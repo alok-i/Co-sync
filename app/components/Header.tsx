@@ -45,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   const handleLogoClick = () => {
-    router.push("/home");
+    router.push("/Home");
   };
 
   return (
