@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MapPin, Linkedin, Instagram } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 interface ContactFormData {
   name: string;
@@ -9,12 +10,22 @@ interface ContactFormData {
 }
 
 const ContactSection: React.FC = () => {
+  // Environment variables
+  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     spaceName: "",
     message: "",
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null
+  );
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,9 +37,53 @@ const ContactSection: React.FC = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
-    // Handle form submission here
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Check if all required environment variables are set
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      console.error(
+        "EmailJS configuration missing. Please check your environment variables."
+      );
+      setSubmitStatus("error");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        space_name: formData.spaceName,
+        message: formData.message,
+        to_name: "CoSync Team",
+      };
+
+      const result = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      );
+
+      console.log("Email sent successfully:", result);
+      setSubmitStatus("success");
+
+      // Reset form after successful submission
+      setFormData({
+        name: "",
+        email: "",
+        spaceName: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -67,13 +122,27 @@ const ContactSection: React.FC = () => {
                 Contact Form
               </h2>
 
-              <div className="space-y-6">
+              {/* Status Messages */}
+              {submitStatus === "success" && (
+                <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                  Thank you! Your message has been sent successfully.
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                  Sorry, there was an error sending your message. Please try
+                  again.
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Name
+                    Name *
                   </label>
                   <input
                     type="text"
@@ -81,7 +150,8 @@ const ContactSection: React.FC = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-0 py-3 border-0 border-b-2 border-blue-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors"
+                    required
+                    className="w-full px-0 py-3 text-black border-0 border-b-2 border-blue-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
@@ -90,7 +160,7 @@ const ContactSection: React.FC = () => {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Email ID
+                    Email ID *
                   </label>
                   <input
                     type="email"
@@ -98,7 +168,8 @@ const ContactSection: React.FC = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-0 py-3 border-0 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors"
+                    required
+                    className="w-full px-0 py-3  text-black border-0 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
@@ -115,7 +186,7 @@ const ContactSection: React.FC = () => {
                     name="spaceName"
                     value={formData.spaceName}
                     onChange={handleInputChange}
-                    className="w-full px-0 py-3 border-0 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors"
+                    className="w-full px-0 py-3 text-black  border-0 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
@@ -124,7 +195,7 @@ const ContactSection: React.FC = () => {
                     htmlFor="message"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Message
+                    Message *
                   </label>
                   <textarea
                     id="message"
@@ -132,20 +203,26 @@ const ContactSection: React.FC = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-0 py-3 border-0 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                    required
+                    className="w-full px-0 py-3  text-black border-0 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   />
                 </div>
 
                 <div className="pt-6">
                   <button
-                    onClick={handleSubmit}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 flex items-center space-x-2"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`${
+                      isSubmitting
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-blue-600 hover:bg-blue-700"
+                    } text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 flex items-center space-x-2`}
                   >
-                    <span>Send Message</span>
-                    <span className="text-lg">→</span>
+                    <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+                    {!isSubmitting && <span className="text-lg">→</span>}
                   </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

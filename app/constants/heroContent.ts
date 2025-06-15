@@ -19,6 +19,45 @@ export interface Feature {
 
 export const heroContentVariations: Record<string, HeroContent> = {
   "1": {
+    badge: "Built for Modern Workspace Management",
+    title: {
+      main: "Eliminate",
+      highlight: "Double Bookings &",
+      continuation: "Simplify Scheduling.",
+    },
+    infoBox: {
+      text: "Cosync helps you manage your meeting rooms, workstations, and event areas with ease. Our smart booking system ensures that every reservation is precise—no overlaps, no confusion.",
+      ctaText: "Book A Demo",
+      ctaIcon: "→",
+    },
+  },
+  "2": {
+    badge: "Community-Focused Coworking Solutions",
+    title: {
+      main: "Connect",
+      highlight: "members, build community,",
+      continuation: "and grow your network.",
+    },
+    infoBox: {
+      text: "Foster meaningful connections within your coworking space. From event management to member directories, create an environment where collaboration thrives and businesses grow together.",
+      ctaText: "Book A Demo",
+      ctaIcon: "→",
+    },
+  },
+  "3": {
+    badge: "Specifically Designed for Coworking spaces",
+    title: {
+      main: "Handle",
+      highlight: "onboarding, documents, and communication in one place",
+      continuation: "not across spreadsheets and emails.",
+    },
+    infoBox: {
+      text: "Managing tenants involves paperwork, back-and-forth communication, and constant follow-ups — especially during onboarding or move-ins. Our platform simplifies this entire process.",
+      ctaText: "Book A Demo",
+      ctaIcon: "→",
+    },
+  },
+  "4": {
     badge: "Specifically Designed for Coworking Spaces",
     title: {
       main: "Automate",
@@ -31,54 +70,15 @@ export const heroContentVariations: Record<string, HeroContent> = {
       ctaIcon: "→",
     },
   },
-  "2": {
-    badge: "Built for Modern Workspace Management",
-    title: {
-      main: "Streamline",
-      highlight: "bookings, optimize space,",
-      continuation: "and enhance member experience.",
-    },
-    infoBox: {
-      text: "Managing desk reservations and meeting room bookings shouldn't be complicated. Our intuitive platform makes space management effortless while providing real-time insights into utilization patterns.",
-      ctaText: "Get Started",
-      ctaIcon: "→",
-    },
-  },
-  "3": {
-    badge: "Community-Focused Coworking Solutions",
-    title: {
-      main: "Connect",
-      highlight: "members, build community,",
-      continuation: "and grow your network.",
-    },
-    infoBox: {
-      text: "Foster meaningful connections within your coworking space. From event management to member directories, create an environment where collaboration thrives and businesses grow together.",
-      ctaText: "Learn More",
-      ctaIcon: "→",
-    },
-  },
-  "4": {
-    badge: "Smart Analytics for Coworking Spaces",
-    title: {
-      main: "Analyze",
-      highlight: "usage patterns, predict trends,",
-      continuation: "and make data-driven decisions.",
-    },
-    infoBox: {
-      text: "Transform your coworking space with powerful analytics. Track member behavior, optimize pricing strategies, and identify growth opportunities with comprehensive reporting tools.",
-      ctaText: "View Analytics",
-      ctaIcon: "→",
-    },
-  },
   "5": {
-    badge: "All-in-One Coworking Platform",
+    badge: "Specifically Designed for Coworking spaces",
     title: {
-      main: "Manage",
-      highlight: "everything seamlessly,",
-      continuation: "from one powerful dashboard.",
+      main: "Keep your",
+      highlight: "space well-maintained and your members happy",
+      continuation: "with faster issue resolution.",
     },
     infoBox: {
-      text: "Why juggle multiple tools when you can have everything in one place? From member onboarding to maintenance requests, our comprehensive platform handles all aspects of coworking space management.",
+      text: "From broken ACs to Wi-Fi outages, facility issues are bound to happen. But how quickly and transparently you respond makes all the difference.",
       ctaText: "See Platform",
       ctaIcon: "→",
     },
@@ -88,51 +88,19 @@ export const heroContentVariations: Record<string, HeroContent> = {
 export const featureVariations: Record<string, Feature[]> = {
   "1": [
     {
-      title: "Automated Payment Processing:",
+      title: "Choose how bookings happen:",
       description:
-        "Set up recurring payments for memberships, desk rentals, and meeting room bookings. Reduce manual invoicing and eliminate payment delays with automated reminders.",
+        "Let members book directly, or keep it admin-only. You can also mix both, depending on the room or resource.",
     },
     {
-      title: "Smart Due Tracking:",
+      title: "Block off unavailable days:",
       description:
-        "Never miss a payment again with intelligent tracking systems that monitor outstanding dues and send timely notifications to both admins and members.",
+        "Easily block bookings on holidays, renovation days, or any time your space isn’t open.",
     },
     {
-      title: "Financial Reporting Dashboard:",
+      title: "Sync with Google Calendar:",
       description:
-        "Get comprehensive insights into your revenue streams with detailed financial reports, cash flow analysis, and payment trend tracking.",
-    },
-    {
-      title: "Multiple Payment Methods:",
-      description:
-        "Accept payments through various channels including credit cards, bank transfers, digital wallets, and mobile payment solutions for maximum convenience.",
-    },
-    {
-      title: "Late Fee Management:",
-      description:
-        "Automatically calculate and apply late fees based on your custom policies, with transparent communication to members about additional charges.",
-    },
-    {
-      title: "Cash Flow Prediction Agent:",
-      description:
-        "Predict cash flow trends to optimize decisions and plan for future growth with AI-powered financial forecasting tools.",
-    },
-  ],
-  "2": [
-    {
-      title: "Real-time Space Availability:",
-      description:
-        "View live availability of desks, meeting rooms, and common areas with instant updates as bookings are made or cancelled throughout the day.",
-    },
-    {
-      title: "Smart Booking System:",
-      description:
-        "Allow members to book spaces instantly through mobile apps or web portals, with automatic confirmation and calendar integration for seamless scheduling.",
-    },
-    {
-      title: "Resource Optimization Analytics:",
-      description:
-        "Track space utilization patterns to identify peak hours, underused areas, and opportunities to maximize your space efficiency and revenue potential.",
+        "All bookings can connect with Google Calendar to keep everyone in sync, without double entries.",
     },
     {
       title: "Flexible Booking Rules:",
@@ -140,17 +108,12 @@ export const featureVariations: Record<string, Feature[]> = {
         "Set custom booking policies including advance notice requirements, maximum booking duration, and member-specific access levels for different space types.",
     },
     {
-      title: "Integrated Calendar Management:",
+      title: "Hot desk bookings made simple:",
       description:
-        "Sync all bookings with Google Calendar, Outlook, and other popular calendar applications to prevent double-bookings and keep everyone organized.",
-    },
-    {
-      title: "Member Self-Service Portal:",
-      description:
-        "Empower members to manage their own bookings, view availability, and modify reservations without requiring admin intervention or support.",
+        "Members can see which desks are available in real-time and grab any open spot that fits their schedule.",
     },
   ],
-  "3": [
+  "2": [
     {
       title: "Event Management Platform:",
       description:
@@ -172,78 +135,75 @@ export const featureVariations: Record<string, Feature[]> = {
         "Use smart algorithms to suggest potential collaborations based on member profiles, skills, and business needs to foster meaningful partnerships.",
     },
     {
-      title: "Social Engagement Tools:",
-      description:
-        "Enable members to connect through chat features, discussion forums, and interest-based groups to build stronger community relationships.",
-    },
-    {
       title: "Community Analytics:",
       description:
         "Track engagement metrics, event attendance, and member interactions to understand community health and identify growth opportunities.",
     },
   ],
+  "3": [
+    {
+      title: "Smooth, digital onboarding:",
+      description:
+        "Tenants can apply online, upload documents like ID proof or contracts, and track the status of their application — all without needing to visit or call.",
+    },
+    {
+      title: "Say goodbye to paperwork:",
+      description:
+        "Use e-signatures and online document storage. Whether it’s a lease agreement or renewal form, everything is digitized and easily accessible when needed.",
+    },
+    {
+      title: "Track every tenant's journey:",
+      description:
+        "See where each tenant is — from inquiry to onboarding, active stay, and renewal. Keep all history in one timeline view so no detail gets missed.",
+    },
+    {
+      title: "Centralize communication:",
+      description:
+        "Send updates, reminders, or urgent alerts to tenants right from the platform. No need to chase different channels",
+    },
+  ],
   "4": [
     {
-      title: "Usage Pattern Analytics:",
+      title: "Automatic billing and invoicing:",
       description:
-        "Analyze how members use your space with detailed reports on peak hours, popular areas, and booking patterns to optimize operations and pricing.",
+        "Create recurring invoices for rent, utilities, or services. Set payment due dates and let the system send reminders before and after the deadline.",
     },
     {
-      title: "Revenue Optimization Insights:",
+      title: "Track all payments in real-time:",
       description:
-        "Identify revenue opportunities through data-driven recommendations on pricing strategies, space allocation, and service offerings.",
+        "View who has paid, what’s overdue, and who needs a reminder — all on a single dashboard.",
     },
     {
-      title: "Member Behavior Tracking:",
+      title: "Download or export reports:",
       description:
-        "Understand member preferences, usage habits, and satisfaction levels through comprehensive analytics to improve retention and experience.",
+        "Need to share data with your accountant or need to download report? One-click exports make it simple and fast.",
     },
     {
-      title: "Predictive Demand Forecasting:",
+      title: "Link billing to bookings:",
       description:
-        "Use machine learning to predict future demand patterns, helping you plan capacity, staffing, and resource allocation more effectively.",
-    },
-    {
-      title: "Performance Benchmarking:",
-      description:
-        "Compare your space's performance against industry standards and similar coworking spaces to identify areas for improvement and growth.",
-    },
-    {
-      title: "Custom Report Builder:",
-      description:
-        "Create tailored reports and dashboards that focus on the metrics most important to your business goals and decision-making processes.",
+        "If you offer flexible plans, you can charge based on actual desk or room usage. The platform automatically calculates and generates bills accordingly.",
     },
   ],
   "5": [
     {
-      title: "Unified Management Dashboard:",
+      title: "Let tenants raise tickets anytime:",
       description:
-        "Control all aspects of your coworking space from a single, intuitive dashboard that provides real-time insights and management capabilities.",
+        "Members can submit maintenance or support requests directly through the platform. They can attach photos and describe the issue clearly.",
     },
     {
-      title: "Member Lifecycle Management:",
+      title: "Assign and prioritise issues easily:",
       description:
-        "Handle the complete member journey from initial inquiry and onboarding through renewal and retention with automated workflows and communications.",
+        "Once submitted, you can assign tickets to staff or vendors, set deadlines, and monitor progress.",
     },
     {
-      title: "Integrated Maintenance System:",
+      title: "Keep a log of recurring issues:",
       description:
-        "Streamline maintenance requests with automated ticketing, vendor management, and status tracking to resolve issues faster and keep tenants informed.",
+        "All issues are saved with time, status, and resolution history — so you can identify patterns and take long-term corrective action.",
     },
     {
-      title: "Multi-location Support:",
+      title: "Notify tenants automatically:",
       description:
-        "Manage multiple coworking locations from a centralized platform with location-specific settings, reporting, and member management capabilities.",
-    },
-    {
-      title: "API Integration Hub:",
-      description:
-        "Connect with your existing tools and services through robust API integrations, including accounting software, CRM systems, and communication platforms.",
-    },
-    {
-      title: "Comprehensive Reporting Suite:",
-      description:
-        "Access detailed reports covering all aspects of your business including financials, occupancy, member satisfaction, and operational efficiency metrics.",
+        "Keep members updated on the status of their requests — without chasing.",
     },
   ],
 };
