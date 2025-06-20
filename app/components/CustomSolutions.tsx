@@ -32,8 +32,8 @@ const CustomSolutionSection: React.FC = () => {
 
           {/* Sub-text */}
           <p className="text-white text-sm max-w-md opacity-90 italic">
-            We promise to never use the phrase "disruptive technology" in our
-            marketing. Some startup traditions are meant to be broken.
+            We promise to never use the phrase &quot;disruptive technology&quot;
+            in our marketing. Some startup traditions are meant to be broken.
           </p>
         </div>
       </div>

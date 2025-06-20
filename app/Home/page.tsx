@@ -17,7 +17,7 @@ const featuresData = [
     buttonText: "Learn More >>",
     imageUrl: "/SpaceBookingAndMangement.png",
     altText: "Space booking interface with calendar and user",
-    contentId: "2", // Maps to space booking content
+    contentId: "1", // Maps to space booking content
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const featuresData = [
     buttonText: "Learn More >>",
     imageUrl: "/Community.png",
     altText: "Community engagement mobile interface",
-    contentId: "3", // Maps to community content
+    contentId: "2", // Maps to community content
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const featuresData = [
     buttonText: "Learn More >>",
     imageUrl: "/TenantManagement.png",
     altText: "Payment processing dashboard",
-    contentId: "5", // Maps to all-in-one management content
+    contentId: "3", // Maps to all-in-one management content
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ const featuresData = [
     buttonText: "Learn More >>",
     imageUrl: "/FinancialTools.png",
     altText: "Member portal dashboard interface",
-    contentId: "1", // Maps to payment/financial content
+    contentId: "4", // Maps to payment/financial content
   },
   {
     id: 5,
