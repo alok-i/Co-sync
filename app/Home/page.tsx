@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import "./page.css";
 import PricingSection from "../components/PricingSection";
 import CustomSolutionSection from "../components/CustomSolutions";
@@ -63,6 +64,7 @@ const featuresData = [
 
 const LandingPage: React.FC = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   // Create refs for the sections we want to scroll to - using HTMLDivElement
   const solutionsRef = useRef<HTMLDivElement>(null);
@@ -80,6 +82,29 @@ const LandingPage: React.FC = () => {
       });
     }
   };
+
+  // Handle URL parameters for section scrolling
+  useEffect(() => {
+    const section = searchParams.get("section");
+    if (section) {
+      // Add a small delay to ensure the page is fully loaded
+      const timer = setTimeout(() => {
+        switch (section) {
+          case "solutions":
+            scrollToSection(solutionsRef);
+            break;
+          case "pricing":
+            scrollToSection(pricingRef);
+            break;
+          case "contact":
+            scrollToSection(contactRef);
+            break;
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
 
   // Navigation function for Learn More buttons
   const handleLearnMoreClick = (contentId: string): void => {

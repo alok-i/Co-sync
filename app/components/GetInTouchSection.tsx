@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { MapPin, Linkedin, Instagram } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
+import Image from "next/image";
 import emailjs from "@emailjs/browser";
 
 interface ContactFormData {
@@ -35,6 +36,13 @@ const ContactSection: React.FC = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleLinkedInClick = () => {
+    window.open(
+      "https://www.linkedin.com/company/cosync/?viewAsMember=true",
+      "_blank"
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -99,17 +107,59 @@ const ContactSection: React.FC = () => {
               </h1>
 
               <div className="space-y-4 text-lg">
-                <div>7742422603</div>
-                <div>9080682466</div>
+                <div className="flex items-center">
+                  <Image
+                    src="/noun-phone-5079154.svg"
+                    alt="Mobile"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 mr-3"
+                  />
+                  <span>7742422603</span>
+                </div>
+                <div className="flex items-center">
+                  <Image
+                    src="/noun-phone-5079154.svg"
+                    alt="Mobile"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 mr-3"
+                  />
+                  <span>9080682466</span>
+                </div>
               </div>
 
               <div className="space-y-2 mt-8 text-lg">
-                <div>Rashmita@cosync.com</div>
-                <div>Alok@cosync.com</div>
+                <div className="flex items-center">
+                  <Image
+                    src="/noun-email-6890562.svg"
+                    alt="Email"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 mr-3"
+                  />
+                  <span>Rashmita@cosync.com</span>
+                </div>
+                <div className="flex items-center">
+                  <Image
+                    src="/noun-email-6890562.svg"
+                    alt="Email"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 mr-3"
+                  />
+                  <span>Alok@cosync.com</span>
+                </div>
               </div>
 
               <div className="flex items-center mt-8 text-lg">
-                <MapPin className="w-5 h-5 mr-3" />
+                <Image
+                  src="/noun-location-7854217.svg"
+                  alt="Location"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 mr-3"
+                />
                 <span>Delhi, India</span>
               </div>
             </div>
@@ -204,7 +254,7 @@ const ContactSection: React.FC = () => {
                     onChange={handleInputChange}
                     rows={4}
                     required
-                    className="w-full px-0 py-3  text-black border-0 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                    className="w-full px-0 py-3  text-black border-0 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-blue-500 resize-none"
                   />
                 </div>
 
@@ -240,7 +290,10 @@ const ContactSection: React.FC = () => {
             </div>
 
             <div className="flex justify-start space-x-4 mb-6">
-              <Linkedin className="w-6 h-6 cursor-pointer hover:text-blue-400 transition-colors" />
+              <Linkedin
+                className="w-6 h-6 cursor-pointer hover:text-blue-400 transition-colors"
+                onClick={handleLinkedInClick}
+              />
               <Instagram className="w-6 h-6 cursor-pointer hover:text-pink-400 transition-colors" />
             </div>
 

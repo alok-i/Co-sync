@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface HeaderProps {
   onSolutionsClick?: () => void;
@@ -16,6 +16,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,23 +24,37 @@ const Header: React.FC<HeaderProps> = ({
 
   const handleSolutionsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    if (onSolutionsClick) {
+
+    // If we're on the home page and have a callback, use it
+    if (pathname === "/Home" && onSolutionsClick) {
       onSolutionsClick();
+    } else {
+      // Navigate to home page with solutions section target
+      router.push("/Home?section=solutions");
     }
     setIsMenuOpen(false);
   };
 
   const handlePricingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    if (onPricingClick) {
+
+    // If we're on the home page and have a callback, use it
+    if (pathname === "/Home" && onPricingClick) {
       onPricingClick();
+    } else {
+      // Navigate to home page with pricing section target
+      router.push("/Home?section=pricing");
     }
     setIsMenuOpen(false);
   };
 
   const handleContactClick = () => {
-    if (onContactClick) {
+    // If we're on the home page and have a callback, use it
+    if (pathname === "/Home" && onContactClick) {
       onContactClick();
+    } else {
+      // Navigate to home page with contact section target
+      router.push("/Home?section=contact");
     }
     setIsMenuOpen(false);
   };

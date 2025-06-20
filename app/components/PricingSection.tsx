@@ -175,9 +175,9 @@ const PricingSection: React.FC = () => {
                   {plan.buttonText}
                 </button>
 
-                <button className="w-full mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium">
+                {/* <button className="w-full mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium">
                   See all features
-                </button>
+                </button> */}
               </div>
 
               {/* Features */}
