@@ -66,6 +66,9 @@ const LandingPage: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Calendly URL - Replace with your actual Calendly link
+  const CALENDLY_URL = "https://calendly.com/rashmitatanwar2";
+
   // Create refs for the sections we want to scroll to - using HTMLDivElement
   const solutionsRef = useRef<HTMLDivElement>(null);
   const pricingRef = useRef<HTMLDivElement>(null);
@@ -81,6 +84,11 @@ const LandingPage: React.FC = () => {
         block: "start",
       });
     }
+  };
+
+  // Function to open Calendly in new tab
+  const openCalendly = (): void => {
+    window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
   };
 
   // Handle URL parameters for section scrolling
@@ -135,7 +143,10 @@ const LandingPage: React.FC = () => {
                 no matter how big you get, our platform has everything you need
                 to streamline operations and enhance member experience.
               </p>
-              <button className="dark-gradient  px-6 py-2 rounded-full transition-colors text-white">
+              <button
+                onClick={openCalendly}
+                className="dark-gradient px-6 py-2 rounded-full transition-colors text-white hover:opacity-90"
+              >
                 SCHEDULE A DEMO
               </button>
             </div>

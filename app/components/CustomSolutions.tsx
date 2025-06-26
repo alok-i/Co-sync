@@ -1,6 +1,14 @@
 import React from "react";
 
 const CustomSolutionSection: React.FC = () => {
+  // Calendly URL - Replace with your actual Calendly link
+  const CALENDLY_URL = "https://calendly.com/rashmitatanwar2";
+
+  // Function to open Calendly in new tab
+  const openCalendly = (): void => {
+    window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="w-full py-16 custom-gradient">
       <div className="container mx-auto px-4">
@@ -12,7 +20,10 @@ const CustomSolutionSection: React.FC = () => {
           </h2>
 
           {/* Button */}
-          <button className="bg-blue-50 text-blue-700 rounded-full py-4 px-8 flex items-center text-xl font-medium mb-8 hover:bg-white transition-colors duration-300">
+          <button
+            onClick={openCalendly}
+            className="bg-blue-50 text-blue-700 rounded-full py-4 px-8 flex items-center text-xl font-medium mb-8 hover:bg-white transition-colors duration-300"
+          >
             Contact Sales
             <svg
               xmlns="http://www.w3.org/2000/svg"

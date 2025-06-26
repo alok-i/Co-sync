@@ -25,6 +25,14 @@ const FeaturesContent: React.FC = () => {
   const searchParams = useSearchParams();
   const contentId = searchParams.get("contentId") || "1";
 
+  // Calendly URL - Replace with your actual Calendly link
+  const CALENDLY_URL = "https://calendly.com/rashmitatanwar2";
+
+  // Function to open Calendly in new tab
+  const openCalendly = (): void => {
+    window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+  };
+
   // Get the hero content based on the URL parameter, fallback to "1" if not found
   const heroContent: HeroContent =
     heroContentVariations[contentId] || heroContentVariations["1"];
@@ -32,6 +40,19 @@ const FeaturesContent: React.FC = () => {
   // Get the features based on the URL parameter, fallback to "1" if not found
   const features: Feature[] =
     featureVariations[contentId] || featureVariations["1"];
+
+  // Handle button clicks based on button text
+  const handleButtonClick = (buttonText: string): void => {
+    if (
+      buttonText.toLowerCase().includes("demo") ||
+      buttonText.toLowerCase().includes("subscription") ||
+      buttonText.toLowerCase().includes("platform")
+    ) {
+      openCalendly();
+    } else {
+      // Handle other button actions if needed
+    }
+  };
 
   return (
     <>
@@ -71,7 +92,12 @@ const FeaturesContent: React.FC = () => {
                   <p className="text-gray-700 text-sm leading-relaxed mb-6">
                     {heroContent.infoBox.text}
                   </p>
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center">
+                  <button
+                    onClick={() =>
+                      handleButtonClick(heroContent.infoBox.ctaText)
+                    }
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center"
+                  >
                     {heroContent.infoBox.ctaText}
                     <span className="ml-2">{heroContent.infoBox.ctaIcon}</span>
                   </button>
@@ -124,7 +150,10 @@ const FeaturesContent: React.FC = () => {
 
             {/* CTA Button */}
             <div className="text-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-transform">
+              <button
+                onClick={() => handleButtonClick("Find your subscription")}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-transform"
+              >
                 Find your subscription
               </button>
             </div>
