@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import "./page.css";
 import PricingSection from "../components/PricingSection";
@@ -62,7 +62,18 @@ const featuresData = [
   },
 ];
 
-const LandingPage: React.FC = () => {
+// Loading component for the suspense boundary
+const LoadingFallback: React.FC = () => (
+  <div className="relative min-h-screen text-[#E75B34] custom-gradient flex items-center justify-center">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+      <p className="text-gray-600">Loading...</p>
+    </div>
+  </div>
+);
+
+// Separate component that uses useSearchParams
+const LandingPageContent: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -304,6 +315,15 @@ const LandingPage: React.FC = () => {
         <CustomSolutionSection />
       </div>
     </div>
+  );
+};
+
+// Main component wrapped in Suspense
+const LandingPage: React.FC = () => {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <LandingPageContent />
+    </Suspense>
   );
 };
 
